@@ -1,0 +1,59 @@
+*plz_donate.txt*	Please donate for Vim!
+
+Version: 1.0
+Author : thinca <thinca+vim@gmail.com>
+License: zlib License
+
+==============================================================================
+CONTENTS					*plz_donate-contents*
+
+INTRODUCTION			|plz_donate-introduction|
+CUSTOMIZING			|plz_donate-customizing|
+LIMITATION			|plz_donate-limitation|
+CHANGELOG			|plz_donate-changelog|
+
+
+
+==============================================================================
+INTRODUCTION					*plz_donate-introduction*
+
+*plz_donate* is a Vim plugin to encourage the donation for Vim periodically.
+
+Requirements:
+- Vim 7.3 or later
+
+Latest version:
+https://github.com/thinca/vim-plz_donate
+
+
+
+==============================================================================
+CUSTOMIZING					*plz_donate-customizing*
+
+g:plz_donate#disabled_time			*g:plz_donate#disabled_time*
+	Does not notify between this time(second) from the last notice.
+	Default: 3 hours
+
+g:plz_donate#writing_count			*g:plz_donate#writing_count*
+	The count of writing required to notice.
+	Default: 10
+
+
+
+==============================================================================
+LIMITATION					*plz_donate-limitation*
+
+- This plugin opens a browser.  That is, the environment which can open a
+  browser is required.
+
+
+
+==============================================================================
+CHANGELOG					*plz_donate-changelog*
+
+1.0	2012-12-03
+	- Initial version.
+
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

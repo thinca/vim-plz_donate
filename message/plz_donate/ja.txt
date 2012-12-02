@@ -1,0 +1,17 @@
+{
+  "Hello! Thanks for using Vim.\n" .
+  "\n" .
+  "Vim is Charityware.  " .
+  "You can use and copy it as much as you like, " .
+  "but you are encouraged to make a donation for needy children in Uganda.\n" .
+  "\n" .
+  "Would you like donation now?":
+  "こんにちは! Vim を使ってくれてありがとうございます。\n" .
+  "\n" .
+  "Vim はチャリティウェアです。" .
+  "好きなだけコピーして使うことができますが、" .
+  "ウガンダの孤児院への寄付を推奨しています。\n" .
+  "\n" .
+  "今すぐ寄付しますか?",
+}
+# vim: ft=conf
