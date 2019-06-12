@@ -30,7 +30,15 @@ endfunction
 
 function! plz_donate#confirm()
   let message = s:Message.get(s:confirm_message)
-  let result = confirm(message, "OK\nCancel", 1)
+  let items = [
+  \   s:Message.get('Yes'),
+  \   s:Message.get('No'),
+  \ ]
+  if exists('*popup_create') && !has('gui_running')
+    call s:open_popup(message, items)
+    return
+  endif
+  let result = confirm(message, join(items, "\n"), 1)
   if result == 1
     call plz_donate#open()
   endif
@@ -48,4 +56,60 @@ function! plz_donate#check()
       call plz_donate#confirm()
     endif
   endif
+endfunction
+
+function s:open_popup(message, items) abort
+  let context = {
+  \   'message': a:message,
+  \   'selected': 0,
+  \   'items': a:items,
+  \ }
+  let winid = popup_create(s:make_popup_content(context), {
+  \   'pos': 'center',
+  \   'zindex': 200,
+  \   'border': [],
+  \   'padding': [],
+  \   'filter': function('s:popup_filter', [context]),
+  \ })
+endfunction
+
+function s:make_popup_content(context) abort
+  let items = map(copy(a:context.items), { index, item ->
+  \   (index == a:context.selected ? '-> ' : '   ') .. item
+  \ })
+  return split(a:context.message, "\n") + [''] + items
+endfunction
+
+function s:update_popup(winid, context) abort
+  let bufnr = winbufnr(a:winid)
+  let content = s:make_popup_content(a:context)
+  call setbufline(bufnr, 1, content)
+endfunction
+
+function s:popup_filter(context, winid, key) abort
+  if 0 <= index(['x', 'q', "\<Esc>"], a:key)
+    call popup_close(a:winid)
+    return 1
+  endif
+  if 0 <= index(["\<Tab>", "\<CR>"], a:key)
+    if a:context.selected == 0
+      call plz_donate#open()
+    endif
+    call popup_close(a:winid)
+    return 1
+  endif
+  if 0 <= index(['j', "\<Down>"], a:key)
+    let a:context.selected += 1
+    if len(a:context.items) <= a:context.selected
+      let a:context.selected = 0
+    endif
+  endif
+  if 0 <= index(['k', "\<Up>"], a:key)
+    let a:context.selected -= 1
+    if a:context.selected < 0
+      let a:context.selected = len(a:context.items) - 1
+    endif
+  endif
+  call s:update_popup(a:winid, a:context)
+  return 1
 endfunction
