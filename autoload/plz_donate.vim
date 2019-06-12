@@ -30,12 +30,9 @@ endfunction
 
 function! plz_donate#confirm()
   let message = s:Message.get(s:confirm_message)
-  let items = [
-  \   s:Message.get('Yes'),
-  \   s:Message.get('No'),
-  \ ]
+  let items = ['OK', 'Cancel']
   if exists('*popup_create') && !has('gui_running')
-    call s:open_popup(message, items)
+    call s:open_popup(message, map(items, { _, i -> s:Message.get(i) }))
     return
   endif
   let result = confirm(message, join(items, "\n"), 1)
