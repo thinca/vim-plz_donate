@@ -3,9 +3,6 @@
 " Author : thinca <thinca+vim@gmail.com>
 " License: zlib License
 
-let s:save_cpo = &cpo
-set cpo&vim
-
 if !exists('g:plz_donate#disabled_time')
   let g:plz_donate#disabled_time = 3 * 60 * 60
 endif
@@ -57,6 +54,3 @@ function! plz_donate#check()
     endif
   endif
 endfunction
-
-let &cpo = s:save_cpo
-unlet s:save_cpo
