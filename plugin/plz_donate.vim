@@ -1,8 +1,3 @@
-" Please donate for Vim!
-" Version: 1.0
-" Author : thinca <thinca+vim@gmail.com>
-" License: zlib License
-
 if exists('g:loaded_plz_donate')
   finish
 endif

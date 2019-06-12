@@ -1,8 +1,3 @@
-" Please donate for Vim!
-" Version: 1.0
-" Author : thinca <thinca+vim@gmail.com>
-" License: zlib License
-
 if !exists('g:plz_donate#disabled_time')
   let g:plz_donate#disabled_time = 3 * 60 * 60
 endif
