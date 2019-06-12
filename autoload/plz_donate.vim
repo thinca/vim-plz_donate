@@ -16,7 +16,7 @@ if !exists('g:plz_donate#last_check')
   let g:plz_donate#last_check = localtime()
 endif
 
-let s:V = vital#of('plz_donate')
+let s:V = vital#plz_donate#new()
 let s:File = s:V.import('System.File')
 let s:Message = s:V.import('Locale.Message').new('plz_donate')
 
